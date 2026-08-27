@@ -18,7 +18,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping({"", "/"})
+    @GetMapping
     public ResponseEntity<List<ProductEntity>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
@@ -30,7 +30,7 @@ public class ProductController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping({"", "/"})
+    @PostMapping
     public ResponseEntity<ProductEntity> createProduct(@RequestBody ProductEntity product) {
         ProductEntity created = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
