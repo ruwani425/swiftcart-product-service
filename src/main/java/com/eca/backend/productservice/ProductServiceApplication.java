@@ -9,7 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = "com.eca.backend.productservice")
+@ComponentScan(basePackages = {
+    "com.eca.backend.productservice.controller",
+    "com.eca.backend.productservice.service",
+    "com.eca.backend.productservice.repository",
+    "com.eca.backend.productservice.config"
+})
 @EnableJpaRepositories(basePackages = "com.eca.backend.productservice.repository")
 @EntityScan(basePackages = "com.eca.backend.productservice.model")
 public class ProductServiceApplication {
