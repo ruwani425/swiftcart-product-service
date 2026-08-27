@@ -18,19 +18,19 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping({"", "/"})
     public ResponseEntity<List<ProductEntity>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductEntity> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductEntity> getProductById(@PathVariable("id") Long id) {
         return productService.getProductById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping({"", "/"})
     public ResponseEntity<ProductEntity> createProduct(@RequestBody ProductEntity product) {
         ProductEntity created = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
@@ -38,7 +38,7 @@ public class ProductController {
 
     @PatchMapping("/{id}/stock")
     public ResponseEntity<ProductEntity> updateStock(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestParam("quantityChange") Integer quantityChange) {
         try {
             ProductEntity updated = productService.updateStock(id, quantityChange);
