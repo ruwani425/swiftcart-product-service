@@ -7,7 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = "com.eca.backend.productservice")
+@ComponentScan(basePackages = {
+    "com.eca.backend.productservice.controller",
+    "com.eca.backend.productservice.service",
+    "com.eca.backend.productservice.repository",
+    "com.eca.backend.productservice.config"
+})
 public class ProductServiceApplication {
 
     public static void main(String[] args) {
